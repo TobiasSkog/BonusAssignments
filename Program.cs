@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using ValidationUtility;
 
 namespace BonusAssignments
 {
@@ -135,8 +136,12 @@ namespace BonusAssignments
                     }
                 }
 
-                //Console.WriteLine("\t\t=== Linear Search ===");
-                //var target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Merge Sort Method: ", 0);
+                Console.WriteLine("\t\t=== Linear Search ===");
+                var target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Merge Sort Method: ", 0);
+                stopwatch.Restart();
+                var targetIndex = Searching.LinearSearch.Search(mergeList, target);
+                stopwatch.Stop();
+                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms to do a Linear Search. You searched for {target} and {(targetIndex == -1 ? "it was not found" : $"it was found at index {targetIndex}")}. The list contains {mergeList.Count - 1} numbers");
 
                 //Console.WriteLine("\t=== Binary Search ===");
                 //target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Bubble Sort Method: ", 0);
