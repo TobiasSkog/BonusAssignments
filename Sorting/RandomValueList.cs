@@ -10,10 +10,9 @@
             {
                 var value = rng.Next(0, randomMax);
 
-                if (!list.Contains(value))
-                {
-                    list.Add(value);
-                }
+
+                list.Add(value);
+
             }
 
             return list;
