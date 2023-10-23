@@ -84,55 +84,77 @@ namespace BonusAssignments
                 stopwatch.Start();
                 var mergeList = Sorting.RandomValueList.GetIntegerList(mergeListSize, mergeListBiggestRandomValue);
                 stopwatch.Stop();
-                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms to Create this list of {mergeList.Count - 1} numbers\n");
-                //for (int i = 0; i < 20; i++)
-                //{
-                //    Console.Write($"{(mergeList[i] < 10 ? $"  {mergeList[i]} " : mergeList[i] < 100 ? $" {mergeList[i]} " : $" {mergeList[i]}")}");
-                //    if (i == 9 || i == 19)
-                //    {
-                //        Console.WriteLine();
-                //    }
-                //}
+                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks |  to Create this list of Merge List 1 with {mergeList.Count - 1} numbers\n");
+
+                stopwatch.Restart();
+                var mergeList2 = Sorting.RandomValueList.GetIntegerList(mergeListSize, mergeListBiggestRandomValue);
+                stopwatch.Stop();
+                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks |  to Create this list of Merge List 2 with {mergeList2.Count - 1} numbers\n");
+
                 stopwatch.Restart();
                 mergeList = Sorting.MergeSort.Sort(mergeList);
                 stopwatch.Stop();
-                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms to Merge Sort {mergeList.Count - 1} numbers\n");
-
-
-                //for (int i = 0; i < 100; i++)
-                //{
-                //    Console.Write($"{(mergeList[i] < mergeList[i + 1] ? true : false)} ");
-                //    if ((i + 1) % 10 == 0)
-                //    {
-                //        Console.WriteLine();
-                //    }
-                //}
-
-                Console.WriteLine("\t\t=== Bubble Sort ===");
-                Console.WriteLine("Test list with 20'000 values randomized between 0 and 1'000'000");
-                Console.WriteLine();
-                var bubbleList = Sorting.RandomValueList.GetIntegerList(20000, 1000000);
+                Console.WriteLine($"\t\tTobias MergeSort\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to MergeSort {mergeList.Count - 1} numbers\n");
 
                 stopwatch.Restart();
-                bubbleList = Sorting.BubbleSort.Sort(bubbleList);
+                mergeList2.Sort();
                 stopwatch.Stop();
-                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms to Bubble Sort {bubbleList.Count - 1} numbers");
+                Console.WriteLine($"\t\tDotNet List.Sort()\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to MergeSort {mergeList2.Count - 1} numbers\n");
 
-                Console.WriteLine("\t\t=== Linear Search ===");
-                //var target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Bubble Sort Method: ", 0);
-                var target = bubbleList[bubbleList.Count - 3];
-                stopwatch.Restart();
-                var targetIndex = Searching.LinearSearch.Search(bubbleList, target);
-                stopwatch.Stop();
-                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms and {stopwatch.ElapsedTicks} ticks to do a Linear Search. You searched for {target} and {(targetIndex == -1 ? "it was not found" : $"it was found at index {targetIndex}")}. The list contains {bubbleList.Count - 1} numbers");
+                //Console.WriteLine("\t\t=== Bubble Sort ===");
+                //Console.WriteLine("Test list with 20'000 values randomized between 0 and 1'000'000");
+                //Console.WriteLine();
+                //var bubbleList = Sorting.RandomValueList.GetIntegerList(20000, 1000000);
 
-                Console.WriteLine("\t\t=== Binary Search ===");
+                //stopwatch.Restart();
+                //bubbleList = Sorting.BubbleSort.Sort(bubbleList);
+                //stopwatch.Stop();
+                //Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms to Bubble Sort {bubbleList.Count - 1} numbers");
+
+                //Console.WriteLine("\t\t=== Linear Search ===");
+                ////var target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Bubble Sort Method: ", 0);
+                //var target = bubbleList[bubbleList.Count - 3];
+                //stopwatch.Restart();
+                //var targetIndex = Searching.LinearSearch.Search(bubbleList, target);
+                //stopwatch.Stop();
+                //Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms and {stopwatch.ElapsedTicks} ticks to do a Linear Search. You searched for {target} and {(targetIndex == -1 ? "it was not found" : $"it was found at index {targetIndex}")}. The list contains {bubbleList.Count - 1} numbers");
+
                 //target = IntValidationHelper.GetInteger("Enter the value you would like to find from the list sorted with the Merge Sort Method: ", 0);
-                target = mergeList[mergeList.Count - mergeList.Count % 9125 * 3];
+                Console.WriteLine("\t\t=== Binary Search ===");
+                var target1 = mergeList[mergeList.Count - 25];
                 stopwatch.Restart();
-                targetIndex = Searching.BinarySearch.Search(mergeList, target);
+                var targetIndex1 = Searching.BinarySearch.Search(mergeList, target1);
                 stopwatch.Stop();
-                Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms and {stopwatch.ElapsedTicks} ticks to do a Binary Search. You searched for {target} and {(targetIndex == -1 ? "it was not found" : $"it was found at index {targetIndex}")}. The list contains {mergeList.Count - 1} numbers");
+                Console.WriteLine($"\t\tTobias Binary Search\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to do a Binary Search. \nYou searched for {target1} and {(targetIndex1 == -1 ? "it was not found" : $"it was found at index {targetIndex1}")}. The list contains {mergeList.Count - 1} numbers");
+
+                var target2 = mergeList2[mergeList.Count - 25];
+                stopwatch.Restart();
+                var targetIndex2 = mergeList2.BinarySearch(target2);
+                stopwatch.Stop();
+                Console.WriteLine($"\t\tDotNet List.BinarySearch(target)\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to do a Binary Search. \nYou searched for {target2} and {(targetIndex2 == -1 ? "it was not found" : $"it was found at index {targetIndex2}")}. The list contains {mergeList2.Count - 1} numbers");
+
+
+                stopwatch.Restart();
+                targetIndex1 = Searching.BinarySearch.Search(mergeList2, target2);
+                stopwatch.Stop();
+                Console.WriteLine($"\t\tTobias Binary Search\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to do a Binary Search. \nYou searched for {target2} and {(targetIndex1 == -1 ? "it was not found" : $"it was found at index {targetIndex1}")}. The list contains {mergeList2.Count - 1} numbers");
+
+                stopwatch.Restart();
+                targetIndex2 = Searching.BinarySearch.Search(mergeList, target1);
+                stopwatch.Stop();
+                Console.WriteLine($"\t\tDotNet List.BinarySearch(target)\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to do a Binary Search. \nYou searched for {target1} and {(targetIndex2 == -1 ? "it was not found" : $"it was found at index {targetIndex2}")}. The list contains {mergeList.Count - 1} numbers");
+
+
+                //Console.WriteLine("\t\t=== Tick Tack Toe ===");
+
+                //TickTackToe.OldVersion.ConsoleIO.UserInteraction.Welcome();
+                //var game = new TickTackToe.OldVersion.Logic.GameLogic();
+                //TickTackToe.OldVersion.ConsoleIO.UserInteraction.Goodbye(game.Stats);
+
+                //Console.WriteLine("Implement a new version of tick tack toe... a little later....");
+
+                //Console.WriteLine("\t\t=== Hangman ===");
+                //Console.WriteLine(Hangman.Dictionaries.Dictionaries.GetRandomWordFromDictionary());
 
                 Console.ReadKey();
 

@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="TickTackToe\" />
+    <Folder Include="Hangman\GameLogic\" />
+    <Folder Include="TickTackToe\NewVersion\" />
   </ItemGroup>
 
 </Project>
