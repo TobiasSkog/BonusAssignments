@@ -221,6 +221,7 @@ namespace BonusAssignments
 
         public static void NextAssignment()
         {
+            Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
