@@ -16,7 +16,6 @@ namespace ValidationUtility
                     {
                         return validChar;
                     }
-
                 }
                 Console.Write("\nYou must choose between (");
                 for (int i = 0; i < chars.Length; i++)
