@@ -126,14 +126,14 @@ namespace BonusAssignments
             Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks |  to Create this list of Merge List 2 with {mergeList2.Count - 1} numbers\n");
 
             stopwatch.Restart();
-            mergeList1 = Sorting.MergeSort.Sort(mergeList1);
-            stopwatch.Stop();
-            Console.WriteLine($"\t\tTobias MergeSort\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to MergeSort {mergeList1.Count - 1} numbers\n");
-
-            stopwatch.Restart();
             mergeList2.Sort();
             stopwatch.Stop();
             Console.WriteLine($"\t\tDotNet List.Sort()\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to MergeSort {mergeList2.Count - 1} numbers\n");
+
+            stopwatch.Restart();
+            mergeList1 = Sorting.MergeSort.Sort(mergeList1);
+            stopwatch.Stop();
+            Console.WriteLine($"\t\tTobias MergeSort\nIt took {stopwatch.ElapsedMilliseconds} ms | {stopwatch.ElapsedTicks} ticks | to MergeSort {mergeList1.Count - 1} numbers\n");
 
             NextAssignment();
 
@@ -208,7 +208,7 @@ namespace BonusAssignments
             NextAssignment();
 
             Console.WriteLine("\t\t=== Palindrome Controller ===");
-            var userPalindromeWord = StringValidationHelper.GetStringWhiteSpaceAllowed("Enter the word you want to control if it is an anagram: ");
+            var userPalindromeWord = StringValidationHelper.GetStringWhiteSpaceAllowed("Enter the word you want to control if it is a palindrome: ");
             Console.WriteLine($"{userPalindromeWord} {(Palindrome.PalindromeController.IsPalindrome(userPalindromeWord) ? "is a palindrome!" : "is NOT a palindrome!")}");
 
 
